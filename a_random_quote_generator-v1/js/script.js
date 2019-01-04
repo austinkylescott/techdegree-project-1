@@ -21,34 +21,45 @@ var quotes = [
     quote: "Unless someone like you cares a whole awful lot nothing's going to get better, it's not.",
     source: "Dr. Seuss",
     citation:"Book 'The Lorax'",
-    tags: "Inspiration"
+    tag: "Inspiration"
   },
   {
     quote: "You miss 100% of the shots you don't take.",
     source: "Wayne Gretzky",
     year: 1991,
-    tags: "Motivation"
+    tag: "Motivation"
   },
   {
     quote: "To infinity... and beyond!",
     source: "Buzz Lightyear",
     year: 1995,
     citation:"Movie: 'Toy Story'",
-    tags:"Motivation"
+    tag:"Motivation"
   },
   {
     quote: "The ultimate measure of a man is not where he stands in moments of convenience and comfort, but where he stands in moments of challenge and controversy.",
     source: "Martin Luther King, Jr.",
     year: 1963,
     citation: "Book: 'Strength to Love'",
-    tags: "Inspiration"
+    tag: "Inspiration"
   },
   {
     quote: "I'm Mary Poppins, y'all!",
     source: "Yondu",
     year: 2017,
     citation: "Movie: 'Guardians of the Galaxy 2'",
-    tags: "Joke"
+    tag: "Joke"
+  },
+  {
+    quote: "You can become famous but you can't become unfamous. You can become infamous but not unfamous.",
+    source: "Dave Chappelle",
+    tag: "Fame"
+  },
+  {
+    quote: "In the end, that's what this election is about. Do we participate in a politics of cynicism or a politics of hope?",
+    source: "Barack Obama",
+    citation: "Speech",
+    tag: "Politics"
   }
 ];
 
@@ -75,13 +86,19 @@ function printQuote () {
     html+= '<span class = "year">' + quote.year + ' </span>';         //Add year to html string
   }
 
+  if(quote.tag !== null && quote.tag !== undefined) {
+    html+= '<span class = "tag">' + quote.tag + ' </span>';
+
+  }
+
   html+= ' </p>'; //Closing </p> source tag
 
 
-  console.log(html);
+  document.getElementById("quote-box").innerHTML = html;  //update quote html
 
-  document.getElementById("quote-box").innerHTML = html;
-  document.body.style.backgroundColor = getRandomColor(); //sets background color to rgb string
+  var color = getRandomColor();
+  document.body.style.backgroundColor = color; //sets background color to rgb string
+  document.getElementById("loadQuote").style.backgroundColor = color; //sets button color to same string
 }
 
 function getRandomRGBValue(){
@@ -96,7 +113,7 @@ function getRandomColor () {      //generates RGB values and returns a string
 }
 
 
-
+var timer = setInterval(printQuote,15000); //Prints a new quote every 15 seconds
 
 //Calls printQuote() and changes the quote to our generated HTML
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
