@@ -101,9 +101,7 @@ function printQuote () {
   document.getElementById("loadQuote").style.backgroundColor = color; //sets button color to same string
 }
 
-function getRandomRGBValue(){
-  return Math.floor(Math.random() * 256);
-}
+const getRandomRGBValue = () => Math.floor(Math.random() * 256);
 
 function getRandomColor () {      //generates RGB values and returns a string
   var r = getRandomRGBValue();
